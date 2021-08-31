@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<title>Gestion des déchets</title>
+</head>
+<body>
+  <!--Nav bar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">GROUPE TGW</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Production de déchets par mois</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+  <!--section filtrage-->
+  <div style="text-align:center">
+    <br><br><h1 >Production de déchets par mois</h1><br><br>
+  </div>
+  <div class="row" [formGroup]="tgwForm" (ngSubmit)="actualiser()">
+    <div class="col-sm-6" >
+      <div class="card" class="section_filtre" >
+        <div class="card-body" >
+          <h5 class="card-title">Selectionnez pour filtrer vos données</h5>
+          <div class="container" >
+            <div class="row">
+                <!--La classe bg-info ajoute un fond bleu à l'élément-->
+                <div class="col bg-inf">
+                  <select class="custom-select" formControlName="raison" #raison name="raison">
+                    <option selected >Toutes les raisons sociales</option>
+                    <option *ngFor="let raison of raisons" value="{{raison}}">{{raison}}</option>
+                  </select><br><br>
+                  <select formControlName="site" #site name="site" class="custom-select">
+                    <option value="tous">Tous les sites</option>
+                    <option selected *ngFor="let site of sites" value="{{site}}">{{site}}</option>
+                  </select><br><br>
+                  <div class="row" id="checkbox2">
+                    <!--La classe Collecte Récurrente-->
+                    <div class="col bg-inf" id="check">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2">
+                      <label class="custom-control-label" for="customCheck1">Collecte Récurrente</label>
+                    </div>
+                    <!--La classe Collecte Ponctuelle-->
+                    <div class="col bg-warnin">
+                      <input type="checkbox" class="custom-control-input" id="customCheck3">
+                      <label class="custom-control-label" for="customCheck1">Collecte Ponctuelle</label>
+                    </div>
+                </div>
+                </div>
+                <!--La classe bg-warning ajoute un fond jaune à l'élément-->
+                <div class="col bg-inf">
+                  <select formControlName="annee" #annee name="annee" class="custom-select">
+                    <option selected>Toutes les années</option>
+                    <option *ngFor="let annee of annees" value="{{annee}}">{{annee}}</option>
+
+                  </select><br><br>
+                  <select formControlName="mois" #mois name="mois" class="custom-select">
+                    <option selected>Tous les mois</option>
+                    <option value="1">Janvier</option>
+                    <option value="2">février</option>
+                    <option value="3">Mars</option>
+                    <option value="4">Avril</option>
+                    <option value="5">Mai</option>
+                    <option value="6">Juin</option>
+                    <option value="7">Juillet</option>
+                    <option value="8">Août</option>
+                    <option value="9">Septembre</option>
+                    <option value="10">Octobre</option>
+                    <option value="11">Novembre</option>
+                    <option value="12">Décembre</option>
+
+
+                  </select><br><br>
+                   <a href="#" class="btn btn-primary" id="actu" type="submit" (click)='actualiser()'>Actualiser</a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="card" class="section_filtre">
+        <div class="card-body">
+          <h5 class="card-title">Cochez pour filtrer vos données</h5>
+          <div class="container">
+            <div class="row" >
+                <!--La classe du premiere colone-->
+                <div class="col bg-inf" id="checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Ampoule</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Capsules Nespresso</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">DIB</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Mobilier</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Plastiques autres</label><br>
+                </div>
+                <!--La classe du deuxieme colone-->
+                <div class="col bg-warnin" id="checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Biodéchets</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Cartons</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Ferraille</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Palettes</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Tissus</label><br>
+                </div>
+                <!--La classe du troisieme colone-->
+                <div class="col bg-succes" id="checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Bouteilles plastiques</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Cartouches</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Gobelets carton</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Papiers de bureau</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Verre</label><br>
+                </div>
+                <!--La classe du quatreieme colone-->
+                <div class="col bg-succes" id="checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Canettes</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">D3E</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Gobelets plastique</label><br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Piles et batteries</label><br><br>
+                </div>
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center" >
+  </div>
+  <!--section tableau et graphe-->
+
+    <div class="container" id="tabcenter">
+      <div class="title">Cliquer ici pour illustrer vos données par un graphique</div>
+
+      <app-chart [labels]="anneesString"></app-chart>
+
+      <div class="sub-title">Importer votre data</div>
+
+      <hr>
+
+      <div class="tools">
+        <button>
+          <label>
+            <span class="mdi mdi-file-export"> </span>
+            <small>Import</small>
+            <input hidden type="file" (change)="onFileChange($event)" multiple="false">
+          </label>
+        </button>
+      </div>
+
+      <table id="contactJs" class="table-contact">
+        <tr class="thead" id="celulle" >
+          <th style="text-align:center">Type déchets</th>
+          <th id="cel" style="text-align:center">Quantité (en kg)</th>
+          <th id="cel" style="text-align:center">Code clients</th>
+          <th id="cel" style="text-align:center">Rainsons scocials</th>
+          <th id="cel" style="text-align:center">Site</th>
+          <th id="cel" style="text-align:center">Type de collecte</th>
+          <th id="cel" style="text-align:center">Année</th>
+          <th id="cel" style="text-align:center">Mois</th>
+          <th id="cel" style="text-align:center">Code de traitement</th>
+          <th id="cel" style="text-align:center">Date de collecte</th>
+          <th id="cel" style="text-align:center">Source</th>
+        </tr>
+        <tr class="tbody" *ngFor="let dechet of importDechets; let odd = odd" [ngClass]="{'odd': odd}" id="celulle">
+          <td style="text-align:center">{{dechet?.Dechet}}</td>
+          <td style="text-align:center">{{dechet?.Quantite}}</td>
+          <td style="text-align:center">{{dechet?.Code_client}}</td>
+          <td style="text-align:center">{{dechet?.RS_client}}</td>
+          <td style="text-align:center">{{dechet?.Site}}</td>
+          <td style="text-align:center">{{dechet?.Type_collecte}}</td>
+          <td style="text-align:center">{{dechet?.Annee}}</td>
+          <td style="text-align:center">{{dechet?.Mois}}</td>
+          <td style="text-align:center">{{dechet?.Code_traitement}}</td>
+          <td style="text-align:center">{{dechet?.Date_collecte}}</td>
+          <td style="text-align:center">{{dechet?.Source}}</td>
+        </tr>
+      </table>
+
+    </div>
+    <!--Partie filtrage-->
+
+</body>
+</html>
